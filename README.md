@@ -2,6 +2,8 @@
 
 A website monitoring dashboard that tracks availability, response times and certificate expiry. SiteWatch combines a React interface with a Cloudflare Worker and D1 database. It is a portfolio project designed to explore full-stack development, scheduled jobs and operational monitoring.
 
+**[Explore the public demo](https://sitewatch-portfolio-demo.stathisbogris.workers.dev/)** — an interactive sample workspace with synthetic data and no connection to the private monitoring service.
+
 ## Features
 
 - Manage up to 10 public HTTPS websites: add, edit, archive and restore monitors. Archived monitors retain their historical data; changing a URL starts a separate history.
@@ -45,7 +47,7 @@ Deployment requires a Cloudflare account, Wrangler and a D1 database. These step
 4. Set `DASHBOARD_PASSWORD` using `npx wrangler secret put DASHBOARD_PASSWORD`. For Gmail alerts, configure `SMTP_USER` in your own configuration and set `SMTP_PASSWORD` as a Wrangler secret. Never commit either value, your real Wrangler configuration or local data.
 5. Deploy with `npx wrangler deploy` and sign in using the configured `DASHBOARD_USER` and dashboard password. Set the alert recipient in the dashboard if email is enabled.
 
-The online dashboard is intended for a single owner. Demo mode is sample data inside the interface; it is not an independently public demo when the Worker is protected. Availability percentages describe recorded checks only and do not account for missing observations. SSL data can be temporarily unavailable. Scheduled checks, external APIs and email delivery are subject to service limits and outages.
+The online dashboard is intended for a single owner. The public demo is a separate static deployment built with `VITE_PUBLIC_DEMO=true`: it is fixed to sample data, has no backend or database bindings and does not send email. The private Worker deployment remains password protected. Availability percentages describe recorded checks only and do not account for missing observations. SSL data can be temporarily unavailable. Scheduled checks, external APIs and email delivery are subject to service limits and outages.
 
 ## Project structure
 
