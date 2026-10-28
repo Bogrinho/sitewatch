@@ -50,7 +50,7 @@ export function WeeklyReport({mode,apiBase}:{mode:Mode;apiBase:string}){
     return()=>{active=false;};
   },[mode,apiBase]);
   return <section className="panel weekly-panel"><div className="section-heading"><div><h2>Weekly report</h2><p>Availability, response times and incidents over the last 7 days.</p></div><FileText size={20}/></div>
-    <p className="muted">{mode==='demo'?'Sample report. Switch to Live to see your actual data.':'Calculated from recorded checks. Time without a check is not counted as uptime.'}</p>
+    <p className="muted">{mode==='demo'?'Sample report using illustrative data.':'Calculated from recorded checks. Time without a check is not counted as uptime.'}</p>
     {error?<p role="alert">{error}</p>:report?<pre>{report}</pre>:<p>Preparing report…</p>}
     <p className="alert-note"><Mail size={16}/> Email delivery can be enabled in Settings after configuring SMTP.</p>
   </section>;

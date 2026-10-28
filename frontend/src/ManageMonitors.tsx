@@ -33,6 +33,7 @@ export default function ManageMonitors({mode,apiBase,onChanged}:{mode:Mode;apiBa
     const ok=editing?await mutate(`/api/monitors/${editing}`,'PATCH',{name,url}):await mutate('/api/monitors','POST',{name,url});
     if(ok){setName('');setUrl('');setEditing(null);setNotice(editing?'Website name updated.':'Website added. The first check may take up to five minutes.');}
   }
+  if(import.meta.env.VITE_PUBLIC_DEMO === 'true') return <section className="panel monitor-management"><div className="section-heading"><div><h2>Manage websites</h2><p>In the full application, you can add, edit and archive monitored websites. This public demo uses sample data.</p></div><Plus size={20}/></div></section>;
   return <section className="panel monitor-management"><div className="section-heading"><div><h2>Manage websites</h2><p>Add up to 10 public HTTPS websites. Archived sites keep their history.</p></div><Plus size={20}/></div>
     <form onSubmit={submit} className="monitor-form">
       <label>Website name<input required maxLength={100} value={name} onChange={e=>setName(e.target.value)} placeholder="My website"/></label>
