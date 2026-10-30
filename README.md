@@ -62,3 +62,14 @@ The online dashboard is intended for a single owner. The public demo is a separa
 ## Security
 
 This repository intentionally excludes credentials, private database exports and live configuration. HTTP Basic authentication is suitable here for a small personal dashboard but should be reconsidered for multi-user or production deployments. Monitor URLs should not contain credentials or sensitive query parameters. Keep secrets in Cloudflare secrets and rotate them if exposed.
+
+
+## Measurement reliability
+
+HTTP response time is measured through response headers, summed across redirect hops. It excludes SiteWatch safety DNS lookups and does not represent browser rendering or full page load. Response averages use the current timing method only; legacy observations remain available for availability history.
+
+An observation older than 15 minutes or a monitoring-provider fault is shown as unknown rather than healthy. Monitoring-provider faults are excluded from observed availability percentages. SSL expiry is calculated from the certificate expiry date and cached observations become unavailable after 48 hours.
+
+For an existing database created before this change, apply `migrate_accuracy.sql` once before deploying this Worker version. New workspaces should apply only `schema.sql`.
+
+Validation includes 14 backend unit tests and 11 isolated integration scenarios using the Workers runtime and a real local D1 database with controlled HTTP responses. These cover known delay and redirects, outage and recovery, DNS-provider faults, stale observations, metric-version separation, locks and archive/history behavior. The controlled integration run does not establish guaranteed availability, exactly-once email delivery or identical timing from different network locations.

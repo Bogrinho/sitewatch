@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS monitors (
 CREATE TABLE IF NOT EXISTS checks (
   id INTEGER PRIMARY KEY AUTOINCREMENT, monitor_id TEXT NOT NULL, checked_at TEXT NOT NULL,
   success INTEGER NOT NULL, response_time_ms REAL, status_code INTEGER, error TEXT,
-  ssl_days_remaining INTEGER, ssl_error TEXT
+  ssl_days_remaining INTEGER, ssl_error TEXT, timing_version INTEGER NOT NULL DEFAULT 1, outcome TEXT NOT NULL DEFAULT 'target'
 );
 CREATE INDEX IF NOT EXISTS checks_monitor_time ON checks(monitor_id, checked_at);
 CREATE INDEX IF NOT EXISTS checks_time ON checks(checked_at);

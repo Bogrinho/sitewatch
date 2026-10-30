@@ -28,8 +28,8 @@ export function transition(monitor, check, sslDays = 14) {
   } else {
     m.slow_streak = 0;
     m.consecutive_failures++;
-    m.status = m.consecutive_failures >= 3 ? 'down' : 'degraded';
-    if (m.consecutive_failures === 3) {
+    m.status = monitor.status==='down'||m.consecutive_failures >= 3 ? 'down' : 'degraded';
+    if (m.consecutive_failures === 3 && monitor.status!=='down') {
       incident = 'open';
       add('is down', `${m.name} failed three consecutive checks.`);
     }
