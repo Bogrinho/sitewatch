@@ -163,3 +163,5 @@ main{padding-top:40px}
 .manage-item strong{font-size:13px}.manage-item small{font-size:11px;color:#718878;margin-top:5px;overflow-wrap:anywhere}
 .manage-notice{font-size:12px;color:#547760;margin-bottom:15px}
 @media(max-width:760px){.monitor-management{padding:0 18px 16px}.monitor-form{grid-template-columns:1fr}.manage-item{align-items:flex-start;flex-direction:column}.manage-item>div:last-child{flex-wrap:wrap}}
+
+.status-unknown{color:#8a6a30}.status-unknown .status-dot{background:#a18551;box-shadow:0 0 0 3px #f6f1e6}.response-definition{padding:12px 26px;font-size:11px;line-height:1.6;color:#667663}.observation-notice{margin:0 26px 12px;padding:12px;border-radius:7px;background:#fff7e8;color:#8a6a30;font-size:12px;line-height:1.6}

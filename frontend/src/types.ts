@@ -1,6 +1,6 @@
 export type Period = '24h' | '7d';
 export type Mode = 'demo' | 'live';
-export type MonitorStatus = 'up' | 'degraded' | 'down' | 'pending';
+export type MonitorStatus = 'up' | 'degraded' | 'down' | 'pending' | 'unknown';
 export interface CheckPoint { at: string; ms: number | null; success: boolean }
 export interface UptimeBar { at: string; status: 'up' | 'down' | 'pending' }
 export interface Monitor {
@@ -8,7 +8,7 @@ export interface Monitor {
   response_time_ms: number | null; uptime_percentage: number | null;
   ssl_days_remaining: number | null; last_checked_at: string | null;
   consecutive_failures: number; sparkline: CheckPoint[]; uptime_bars: UptimeBar[];
-  slow_active?: boolean; slow_threshold_ms?: number;
+  slow_active?: boolean; slow_threshold_ms?: number; stale?: boolean; observation_error?: string | null;
 }
 export interface Incident {
   id: string; monitor_id: string; monitor_name: string; status: 'open' | 'resolved';
